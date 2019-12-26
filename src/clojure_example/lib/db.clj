@@ -18,6 +18,11 @@
   [fields]
   (clojure.string/join ", " (map name fields)))
 
+(defn add-quotation
+  "add quotation at string value for SQL"
+  [value]
+  (str "'" value "'"))
+
 (defn insert
   "Insert a record into a table"
   [table record]
@@ -27,3 +32,8 @@
   "Select records from a table"
   [table fields]
   (jdbc/query -db [(str "select " (concat-fields fields)  " from " (name table))] ))
+
+(defn select-by-key
+    "Select records from a table using key"
+    [table fields key]
+    (jdbc/query -db [(str "select " (concat-fields fields)  " from " (name table) " where name = " (add-quotation key) )] ))

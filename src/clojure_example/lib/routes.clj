@@ -17,12 +17,16 @@
 
 (defn get-password-rule-route 
 	"Echo back a name"
-  [req]
+  ([req]
 	{:status 200
 	 :headers {"Content-Type" "application/json"}
-	 :body (do (-> (api/get-password-rule)))})
+   :body (do (-> (api/get-password-rule)))})
+  ([req id]
+  {:status 200
+  :headers {"Content-Type" "application/json"}
+  :body (do (-> (api/get-password-rule id)))}))
 
-(defn add-password-rule-route 
+(defn add-password-rule-route
 	"Endpoint for adding a password Rule"
   [req]
 	{:status 200

@@ -15,7 +15,8 @@
 (defroutes app-routes
   (GET "/" [] routes/echo-route)
   (GET "/password-rules" [] routes/get-password-rule-route)
-  (POST "/password-rules" [] routes/add-password-rule-route))
+  (POST "/password-rules" [] routes/add-password-rule-route)
+  (GET "/password-rules/:id" [id] (fn [req] (routes/get-password-rule-route req id))))
 
 (defn -main
   "Production"

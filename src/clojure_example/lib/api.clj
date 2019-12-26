@@ -10,8 +10,10 @@
 
 (defn get-password-rule 
   "Retrieve a list of records from friends"
-  []
+  ([]
   (db/select :passwordrule [:name :number :lower :upper :special :count :min :max :etc]))
+  ([key]
+  (db/select-by-key :passwordrule [:name :number :lower :upper :special :count :min :max :etc] key)))
 
 (defn add-password-rule
   "Add a record to friends"
